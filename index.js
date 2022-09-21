@@ -52,7 +52,7 @@ app.get('/students', (req, res) => {
 });
 
 
-app.get('/students/: id', (req, res) => {
+app.get('/students/:id', (req, res) => {
     mysqlConnection.query('SELECT * FROM students WHERE id=?', [req.params.id], (err, row, fields) => {
         if (!err) {
             res.send(row);
@@ -64,7 +64,7 @@ app.get('/students/: id', (req, res) => {
 });
 
 
-app.put('/students/id', (req, res) => {
+app.put('/students/:id', (req, res) => {
     mysqlConnection.query('UPDATE students SET phone =? WHERE id=?', [req.body.phone, req.params.id], (err, rows, fields) => {
         if (!err) {
             res.send("Record has been Updated");
@@ -90,5 +90,5 @@ app.delete('/students/:id', (req, res) => {
 
 
 app.listen(3000, () => {
-    console.log("Express is running on localhost : 3000");
+    console.log("Express is running on localhost: 3000");
 });
