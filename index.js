@@ -1,11 +1,20 @@
+
+
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const exphbs = require('express-handlebars')
 
 var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+//template engine
+
+app.engine('hbs', exphbs({ extname: '.hbs' }));
+app.set('view engine', 'hbs');
 
 
 var mysqlConnection = mysql.createConnection({
