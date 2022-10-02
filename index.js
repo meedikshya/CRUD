@@ -21,6 +21,10 @@ app.get("/", (req, res) => {
 
 });
 
+//static files 
+app.use(express.static('public'))
+app.use('/css', express.static(__dirname + 'public/css'));
+
 
 var mysqlConnection = mysql.createConnection({
     host: 'localhost',
