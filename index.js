@@ -3,7 +3,7 @@
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const exphbs = require('express-handlebars')
+const exphbs = require('hbs')
 
 var app = express();
 
@@ -12,9 +12,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 //template engine
+//to set the view engine
+//app.set('view engine', 'hbs');
 
-app.engine('hbs', exphbs({ extname: '.hbs' }));
-app.set('view engine', 'hbs');
+//template engine route
+/*app.get("", (req, res) => {
+    res.render('index')
+
+});*/
 
 
 var mysqlConnection = mysql.createConnection({
