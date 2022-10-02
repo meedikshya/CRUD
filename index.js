@@ -13,13 +13,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //template engine
 //to set the view engine
-//app.set('view engine', 'hbs');
+app.set('view engine', 'hbs');
 
 //template engine route
-/*app.get("", (req, res) => {
+app.get("/", (req, res) => {
     res.render('index')
 
-});*/
+});
 
 
 var mysqlConnection = mysql.createConnection({
