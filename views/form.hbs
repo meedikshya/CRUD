@@ -5,53 +5,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student;s Entry</title>
+    <title>Student's Entry</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
 <body>
     <div class="container">
+        <form action="/form-submit" method="get">
 
-        <div class="row">
-            <div class="col-md-12">
-                <label for="Id" class="form-label">Student's Id</label>
-                <br>
-                <input type="number" class="id-type">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="Id" class="form-label">Student's Id</label>
+                    <br>
+                    <input type="number" class="id-type" value="{{datas.id}}">
+                </div>
             </div>
-        </div>
 
 
-        <br>
-        <br>
+            <br>
+            <br>
 
-        <div class="row">
-            <div class="col-md-12">
-                <label for="Name" class="form-label">Student's Name</label>
-                <br>
-                <input type="text" class="student-type">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="Name" class="form-label">Student's Name</label>
+                    <br>
+                    <input type="text" class="student-type" value="{{datas.Name}}">
+                </div>
             </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <label for="email" class="form-label">Student's Email</label>
-                <br>
-                <input type="email" class="email-type">
+            <br>
+            <br>
+            <div class=" row">
+                <div class="col-md-12">
+                    <label for="email" class="form-label">Student's Email</label>
+                    <br>
+                    <input type="email" class="email-type" value="{{datas.email}}">
+                </div>
             </div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <label for="phone" class="form-label">Student's Phone Number</label>
-                <br>
-                <input type="tel" class="phone-type">
-                <br>
-                <br>
+            <br>
+            <br>
+            <div class=" row">
+                <div class="col-md-12">
+                    <label for="phone" class="form-label">Student's Phone Number</label>
+                    <br>
+                    <input type="tel" class="phone-type" value="{{datas.phone}}">
+                    <br>
+                    <br>
 
-                <button type="submit" class="button">Submit</button>
+                    <button type="submit" class="button">Submit</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 
 

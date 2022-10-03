@@ -17,9 +17,23 @@ app.set('view engine', 'hbs');
 
 //template engine route
 app.get("/", (req, res) => {
-    res.render('index')
-
+    res.render('index', { title: "Hellloooo" })
 });
+
+app.get("/students", (req, res) => {
+    data = req.data;
+    res.render('data', { data: data });
+});
+
+app.get("/student", (req, res) => {
+    res.render('individual1', { data: data })
+});
+
+app.get("/edit", (req, res) => {
+    res.render('form');
+});
+
+
 
 //static files 
 app.use(express.static('public'))
@@ -45,7 +59,7 @@ mysqlConnection.connect((err) => {
 })
 
 
-app.post('/student', (req, res) => {
+app.post('/api/student', (req, res) => {
     mysqlConnection.query('INSERT INTO students(Name,email,phone) values(?,?,?)', [req.body.Name, req.body.email, req.body.phone], (err, response) => {
         if (!err) {
             res.send('Record has been inserted successfully');
@@ -57,31 +71,56 @@ app.post('/student', (req, res) => {
 });
 
 
-app.get('/students', (req, res) => {
+app.get('/api/students', (req, res) => {
     mysqlConnection.query('SELECT * FROM students', (err, rows, fields) => {
         if (!err) {
-            res.send(rows);
+            //res.send(rows);
+            var datas = rows;
+            // res.send(rows);
+            res.render('data', { datas: datas });
+
+            // res.render('data');
         }
         else {
-            throw err;
+            // throw err;
+            console.log(err);
         }
     });
 });
 
 
-app.get('/students/:id', (req, res) => {
+app.get('/api/students/:id', (req, res) => {
     mysqlConnection.query('SELECT * FROM students WHERE id=?', [req.params.id], (err, row, fields) => {
         if (!err) {
-            res.send(row);
+            // res.send(row);
+            var datas = row;
+            res.render('individual1', { datas: datas[0] });
         }
         else {
-            throw err;
+            //throw err;
+            console.log(err);
+
+        }
+    });
+});
+
+app.get('/api/edit/:id', (req, res) => {
+    mysqlConnection.query('SELECT * FROM students WHERE id=?', [req.params.id], (err, row, fields) => {
+        if (!err) {
+            //res.send(row);
+            var datas = row[0];
+            res.render('form', { datas: datas });
+        }
+        else {
+            //throw err;
+            console.log(err);
+
         }
     });
 });
 
 
-app.put('/students/:id', (req, res) => {
+app.put('/api/students/:id', (req, res) => {
     mysqlConnection.query('UPDATE students SET phone =? WHERE id=?', [req.body.phone, req.params.id], (err, rows, fields) => {
         if (!err) {
             res.send("Record has been Updated");
@@ -94,7 +133,7 @@ app.put('/students/:id', (req, res) => {
 
 
 
-app.delete('/students/:id', (req, res) => {
+app.delete('/api/students/:id', (req, res) => {
     mysqlConnection.query('DELETE FROM students WHERE id=?', [req.params.id], (err, rows, fields) => {
         if (!err) {
             res.send("Record has been Deleted");
