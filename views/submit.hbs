@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student's Entry</title>
-    <link rel="stylesheet" type="text/css" href="/css/form.css">
+    <link rel="stylesheet" type="text/css" href="/css/submission.css">
 
 </head>
 
 <body>
     <div class="container">
-        <form method="POST" action="/api/edit/{{userId}}">
-
+        <form method="POST" action="/api/new-submit">
             <div class="row">
                 <div class="col-md-12">
                     <label for="Name" class="form-label">Student's Name</label>
@@ -21,7 +20,7 @@
 
 
 
-                    <input type="text" class="student-type" value="{{datas.Name}}" name="name">
+                    <input type="text" class="student-type" placeholder="Enter Name" name="name">
 
                 </div>
             </div>
@@ -32,7 +31,7 @@
                     <br>
 
 
-                    <input type="email" class="email-type" value="{{datas.email}}" name="email">
+                    <input type="email" class="email-type" placeholder="Enter Email" name="email">
                 </div>
             </div>
             <br>
@@ -42,11 +41,11 @@
                     <br>
 
 
-                    <input type="tel" class="phone-type" value="{{datas.phone}}" name="phone">
+                    <input type="tel" class="phone-type" placeholder="Enter Phone Number" name="phone">
                     <br>
 
 
-                    <button type="submit" class="button">Submit</button>
+                    <button type="submit" class="button">Update</button>
                 </div>
             </div>
         </form>

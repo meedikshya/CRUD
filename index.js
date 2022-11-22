@@ -33,10 +33,18 @@ app.get("/edit", (req, res) => {
     res.render('form');
 });
 
+app.get("/new-submit", (req, res) => {
+    res.render("submit");
+})
+
+/*app.get("/delete", (req, res) => {
+    res.render("delete");
+})*/
+
 
 
 //static files 
-app.use(express.static('public'))
+app.use(express.static('public'));
 app.use('/css', express.static(__dirname + 'public/css'));
 
 
@@ -58,15 +66,49 @@ mysqlConnection.connect((err) => {
     }
 })
 
+//get and post methods for formm, new data update
 
-app.post('/api/student', (req, res) => {
-    mysqlConnection.query('INSERT INTO students(Name,email,phone) values(?,?,?)', [req.body.Name, req.body.email, req.body.phone], (err, response) => {
+app.get('/api/new-submit', (req, res) => {
+    // mysqlConnection.query('SELECT * FROM students WHERE id=?', [req.params.id], (err, row, fields) => {
+    // if (!err) {
+    // res.send(row);
+    res.render('submit');
+    // }
+    // else {
+    //throw err;
+    // console.log(err);
+    // }
+    // });
+
+});
+
+app.post('/api/new-submit', (req, res) => {
+    mysqlConnection.query('INSERT INTO students(Name,email,phone) values(?,?,?)', [req.body.name, req.body.email, req.body.phone], (err, response) => {
         if (!err) {
             res.send('Record has been inserted successfully');
         }
         else {
+            //console.log(err);
             throw err;
         }
+
+    });
+});
+
+
+
+
+app.post('/api/students', (req, res) => {
+    mysqlConnection.query('INSERT INTO students(Name,email,phone) values(?,?,?)', [req.body.namee, req.body.email, req.body.phone], (err, response) => {
+        if (!err) {
+            res.send('Record has been inserted successfully');
+        }
+        else {
+            //console.log(err);
+            throw err;
+        }
+        //var mysql = "UPDATE students sets Name=?, email=?, phone=? where id=?";
+        //res.redirect('/api/students');
     });
 });
 
@@ -104,12 +146,15 @@ app.get('/api/students/:id', (req, res) => {
     });
 });
 
+
+//get and post method for edit
+
 app.get('/api/edit/:id', (req, res) => {
     mysqlConnection.query('SELECT * FROM students WHERE id=?', [req.params.id], (err, row, fields) => {
         if (!err) {
             //res.send(row);
             var datas = row[0];
-            res.render('form', { datas: datas });
+            res.render('form', { datas: datas, userId: req.params.id });
         }
         else {
             //throw err;
@@ -118,6 +163,18 @@ app.get('/api/edit/:id', (req, res) => {
         }
     });
 });
+
+app.post('/api/edit/:id', (req, res) => {
+    mysqlConnection.query('UPDATE students set Name=?,email=?,phone=? where id=?', [req.body.name, req.body.email, req.body.phone, req.params.id], (err, response) => {
+        if (!err) {
+            res.send('Record has been updated successfully');
+        }
+        else {
+            //console.log(err);
+            throw err;
+        }
+    });
+})
 
 
 app.put('/api/students/:id', (req, res) => {
@@ -132,17 +189,48 @@ app.put('/api/students/:id', (req, res) => {
 });
 
 
+//methods for deleting data
 
-app.delete('/api/students/:id', (req, res) => {
-    mysqlConnection.query('DELETE FROM students WHERE id=?', [req.params.id], (err, rows, fields) => {
-        if (!err) {
-            res.send("Record has been Deleted");
+
+app.get('/api/delete/:id', (req, res) => {
+    mysqlConnection.query('select * FROM students WHERE id=?', [req.params.id], (err, row, fields) => {
+        if (row.length != 1) {
+            res.send("This donot exist");
+            console.log(row.length);
+        }
+        else if (row.length == 1) {
+            console.log(row.length);
+            mysqlConnection.query('Delete FROM students WHERE id=?', [req.params.id], (err, row, fields) => {
+                res.send("Record has been Deleted");
+            });
+
         }
         else {
             throw err;
         }
     });
-});
+
+})
+
+app.delete('/api/delete/:id', (req, res) => {
+    mysqlConnection.query('select * FROM students WHERE id=?', [req.params.id], (err, row, fields) => {
+        if (row.length != 1) {
+            res.send("This donot exist");
+            console.log(row.length);
+        }
+        else if (row.length == 1) {
+            console.log(row.length);
+            mysqlConnection.query('Delete FROM students WHERE id=?', [req.params.id], (err, row, fields) => {
+                res.send("Record has been Deleted");
+            });
+
+        }
+        else {
+            throw err;
+        }
+    });
+
+})
 
 
 app.listen(3000, () => {

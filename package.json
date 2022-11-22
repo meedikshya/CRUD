@@ -9,11 +9,13 @@
   "author": "Dikshya",
   "license": "ISC",
   "dependencies": {
+    "alert": "^5.1.1",
     "body-parser": "^1.20.0",
     "express": "^4.18.1",
     "hbs": "^4.2.0",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "popups": "^1.1.3"
   },
   "keywords": [
     "Crud",

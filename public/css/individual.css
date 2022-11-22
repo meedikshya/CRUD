@@ -1,0 +1,37 @@
+* {
+    background-color: rgba(205, 201, 201, 0.564);
+
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 111vh;
+    margin-top: -100px;
+}
+
+
+#div2 {
+    border: 2px solid black;
+    border-radius: 8px;
+    border-color: rgba(198, 195, 195, 0.784);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+    width: 300px;
+    height: 320px;
+    text-align: center;
+    justify-content: center;
+    font-size: 17px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+#div2:hover {
+    filter: contrast(110%);
+}
+
+p {
+    padding: 20px;
+    margin-top: 80px;
+
+}

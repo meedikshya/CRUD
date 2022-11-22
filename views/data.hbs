@@ -6,20 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/data.css">
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">-->
 </head>
 
 <body>
 
     <h1>{{datas.Name}}</h1>
-    <div class="container">
+    <div class="container" style="overflow-x: auto;">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-2"></div>
 
                 <div class="col-md-8">
-                    <table class="table table-bordered">
+                    <table class="table-bordered">
                         <tr>
                             <th> ID </th>
                             <th> Name </th>
@@ -34,16 +36,20 @@
                             <td>{{Name}}</td>
                             <td>{{email}}</td>
                             <td>{{phone}}</td>
-
-                            <td> <a href="/api/students/{{id}}">VIEW</a> | <a href="/api/edit/{{id}}">EDIT</a>
-                                |
-                                <a href="DELETE">DELETE</a>
+                            <td> <a href="/api/students/{{id}}" class="link1">VIEW</a> | <a href="/api/edit/{{id}}"
+                                    class="link2">EDIT</a>
+                                | <a href="/api/delete/{{id}}" class="link3"
+                                    onclick="return confirm('Are you sure you want to delete this item?');">DELETE</a>
                             </td>
                         </tr>
                         {{/each}}
 
 
                     </table>
+                    <br>
+                    <br>
+                    <button> <a href="/api/new-submit" class="link4">UPDATE</a></button>
+
 
                 </div>
 
